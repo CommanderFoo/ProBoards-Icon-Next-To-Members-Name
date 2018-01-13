@@ -1,3 +1,4 @@
-# ProBoards-Icon-Next-To-Members-Name
+Icon Next to Members Name
+=========================
 
-https://www.proboards.com/library/plugins/item/58
+Adds a user / group icon next to names across the forum.
