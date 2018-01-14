@@ -8,7 +8,7 @@ class Icon_Next_To_Name {
 
 		this.setup();
 
-		if(this.users.size == 0 || this.groups.size == 0){
+		if(this.users.size == 0 && this.groups.size == 0){
 			return;
 		}
 
