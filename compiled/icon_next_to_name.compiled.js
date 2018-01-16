@@ -97,9 +97,9 @@ var Icon_Next_To_Name = function () {
 		key: "add_user_icon",
 		value: function add_user_icon(elem) {
 			var $link = $(elem);
-			var user_id = parseInt($link.attr("data-id"), 10);
+			var user_id = this.get_user_id($link);
 
-			if (this.users.has(user_id)) {
+			if (user_id && this.users.has(user_id)) {
 				var entry = this.users.get(user_id);
 
 				var $img = $("<img />").attr({
@@ -142,6 +142,21 @@ var Icon_Next_To_Name = function () {
 					$link.addClass("plugin-icon-next-to-name");
 				}
 			}
+		}
+	}, {
+		key: "get_user_id",
+		value: function get_user_id($link) {
+			var user_id = parseInt($link.attr("data-id"), 10);
+
+			if (!user_id) {
+				var id_matches = $link.attr("class").match(/user-(\d+)/i);
+
+				if (id_matches && id_matches.length == 2) {
+					user_id = parseInt(id_matches[1], 10);
+				}
+			}
+
+			return user_id;
 		}
 	}]);
 

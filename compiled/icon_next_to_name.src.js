@@ -80,9 +80,9 @@ class Icon_Next_To_Name {
 
 	static add_user_icon(elem){
 		let $link = $(elem);
-		let user_id = parseInt($link.attr("data-id"), 10);
+		let user_id = this.get_user_id($link);
 
-		if(this.users.has(user_id)){
+		if(user_id && this.users.has(user_id)){
 			let entry = this.users.get(user_id);
 
 			let $img = $("<img />").attr({
@@ -124,6 +124,20 @@ class Icon_Next_To_Name {
 				$link.addClass("plugin-icon-next-to-name");
 			}
 		}
+	}
+
+	static get_user_id($link){
+		let user_id = parseInt($link.attr("data-id"), 10);
+
+		if(!user_id){
+			let id_matches = $link.attr("class").match(/user-(\d+)/i);
+
+			if(id_matches && id_matches.length == 2){
+				user_id = parseInt(id_matches[1], 10);
+			}
+		}
+
+		return user_id;
 	}
 
 }
